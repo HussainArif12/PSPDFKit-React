@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-//import "../public/pspdfkit-lib/";
 
 export default function PdfViewer(props: any) {
   const containerRef = useRef(null);
@@ -30,6 +29,7 @@ export default function PdfViewer(props: any) {
   useEffect(() => {
     const container = containerRef.current;
     let instance, PSPDFKit: any;
+
     (async function () {
       PSPDFKit = await import("pspdfkit");
       PSPDFKit.unload(container);
@@ -42,6 +42,7 @@ export default function PdfViewer(props: any) {
         // Use the public directory URL as a base URL. PSPDFKit will download its library assets from here.
         baseUrl: `${window.location.protocol}//${window.location.host}/public/`,
       });
+
       createTextAnnotation(instance, PSPDFKit);
     })();
 
